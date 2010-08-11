@@ -1,0 +1,1 @@
+This should be an eclipse java project which contains sample code from chapter 7.
