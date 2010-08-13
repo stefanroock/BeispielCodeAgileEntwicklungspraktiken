@@ -1,4 +1,4 @@
-package scorekeeper;
+package kapitel7.teil1;
 
 public class Scorekeeper {
 	private int teamAScore = 0;

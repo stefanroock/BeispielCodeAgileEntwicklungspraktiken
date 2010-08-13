@@ -1,4 +1,4 @@
-package scorekeeper;
+package kapitel7.teil1;
 
 import static org.junit.Assert.assertEquals;
 
