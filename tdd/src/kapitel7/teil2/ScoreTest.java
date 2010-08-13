@@ -20,6 +20,6 @@ public class ScoreTest {
 		assertNotSame(score, incrementedScore);
 		assertEquals(2, incrementedScore.getA());
 		assertEquals(0, incrementedScore.getB());
-		fail();
+		fail(); // to remind me where to continuer after my vacation
 	}
 }
