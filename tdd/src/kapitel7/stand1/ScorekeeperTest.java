@@ -1,4 +1,4 @@
-package kapitel7.teil2;
+package kapitel7.stand1;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,23 +48,10 @@ public class ScorekeeperTest {
 		assertScore(1, 1);
 	}
 
-	@Test
-	public void clickingScoreWithoutTeamSelectionIsIgnored() {
-		scorekeeper.score1Clicked();
-		assertScore(0, 0);
-	}
-	
-	@Test
-	public void onlyFirstClickOnScoreCounts() {
-		scorekeeper.teamAClicked();
-		scorekeeper.score1Clicked();
-		assertScore(1, 0);
-		scorekeeper.score1Clicked();
-		scorekeeper.score1Clicked();
-		assertScore(1, 0);
-	}
-
 	private void assertScore(int expectedAScore, int expectedBScore) {
-		assertEquals(Score.ab(expectedAScore, expectedBScore), scorekeeper.getScore());
+		assertEquals("score team A", expectedAScore,
+				scorekeeper.getTeamAScore());
+		assertEquals("score team B", expectedBScore,
+				scorekeeper.getTeamBScore());
 	}
 }

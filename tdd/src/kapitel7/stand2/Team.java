@@ -1,4 +1,4 @@
-package kapitel7.teil2;
+package kapitel7.stand2;
 
 public enum Team {
 	A {
