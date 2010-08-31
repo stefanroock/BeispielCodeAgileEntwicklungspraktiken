@@ -11,11 +11,11 @@ public class Score {
 	}
 
 	public Score incA() {
-		return new Score(a+1, b);
+		return new Score(a + 1, b);
 	}
 
 	public Score incB() {
-		return new Score(a, b+1);
+		return new Score(a, b + 1);
 	}
 
 	public int getA() {
@@ -24,6 +24,40 @@ public class Score {
 
 	public int getB() {
 		return b;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + a;
+		result = prime * result + b;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Score other = (Score) obj;
+		if (a != other.a)
+			return false;
+		if (b != other.b)
+			return false;
+		return true;
+	}
+
+	public static Score ab(int a, int b) {
+		return new Score(a, b);
+	}
+
+	@Override
+	public String toString() {
+		return a + ":" + b;
 	}
 
 }

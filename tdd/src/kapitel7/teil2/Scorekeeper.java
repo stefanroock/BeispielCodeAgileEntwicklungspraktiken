@@ -4,14 +4,6 @@ public class Scorekeeper {
 	private Score score = new Score(0,0);
 	private boolean teamASelected;
 
-	public int getTeamAScore() {
-		return score.getA();
-	}
-
-	public int getTeamBScore() {
-		return score.getB();
-	}
-
 	public void teamAClicked() {
 		teamASelected = true;
 	}
@@ -26,5 +18,9 @@ public class Scorekeeper {
 		} else {
 			score = score.incB();
 		}
+	}
+
+	public Score getScore() {
+		return score;
 	}
 }

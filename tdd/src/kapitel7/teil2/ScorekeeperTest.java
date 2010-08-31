@@ -45,13 +45,10 @@ public class ScorekeeperTest {
 		assertScore(1, 0);
 		scorekeeper.teamBClicked();
 		scorekeeper.score1Clicked();
-		assertScore(1, 1);
+		assertScore(1, 2);
 	}
 
 	private void assertScore(int expectedAScore, int expectedBScore) {
-		assertEquals("score team A", expectedAScore,
-				scorekeeper.getTeamAScore());
-		assertEquals("score team B", expectedBScore,
-				scorekeeper.getTeamBScore());
+		assertEquals(Score.ab(expectedAScore, expectedBScore), scorekeeper.getScore());
 	}
 }
