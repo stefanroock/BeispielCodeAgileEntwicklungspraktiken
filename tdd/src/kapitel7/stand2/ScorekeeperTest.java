@@ -64,6 +64,20 @@ public class ScorekeeperTest {
 		assertScore(1, 0);
 	}
 
+	@Test
+	public void scoring2Points() {
+		scorekeeper.teamAClicked();
+		scorekeeper.score2Clicked();
+		assertScore(2, 0);
+	}
+	
+	@Test
+	public void scoring3Points() {
+		scorekeeper.teamBClicked();
+		scorekeeper.score3Clicked();
+		assertScore(0, 3);
+	}
+	
 	private void assertScore(int expectedAScore, int expectedBScore) {
 		assertEquals(Score.ab(expectedAScore, expectedBScore), scorekeeper.getScore());
 	}

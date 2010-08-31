@@ -10,6 +10,10 @@ public class Score {
 		this.b = b;
 	}
 
+	public static Score ab(int a, int b) {
+		return new Score(a, b);
+	}
+
 	public Score incABy(int points) {
 		return new Score(a + points, b);
 	}
@@ -49,10 +53,6 @@ public class Score {
 		if (b != other.b)
 			return false;
 		return true;
-	}
-
-	public static Score ab(int a, int b) {
-		return new Score(a, b);
 	}
 
 	@Override

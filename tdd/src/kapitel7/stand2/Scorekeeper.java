@@ -4,6 +4,10 @@ public class Scorekeeper {
 	private Score score = new Score(0, 0);
 	private Team selectedTeam = Team.NONE;
 
+	public Score getScore() {
+		return score;
+	}
+
 	public void teamAClicked() {
 		selectedTeam = Team.A;
 	}
@@ -13,11 +17,19 @@ public class Scorekeeper {
 	}
 
 	public void score1Clicked() {
-		score = selectedTeam.scorePointsOn(1, score);
-		selectedTeam = Team.NONE;
+		score(1);
 	}
 
-	public Score getScore() {
-		return score;
+	public void score2Clicked() {
+		score(2);
+	}
+
+	public void score3Clicked() {
+		score(3);
+	}
+
+	private void score(int points) {
+		score = selectedTeam.scorePointsOn(points, score);
+		selectedTeam = Team.NONE;
 	}
 }

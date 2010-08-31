@@ -4,7 +4,7 @@ public enum Team {
 	A {
 		@Override
 		public Score scorePointsOn(int points, Score score) {
-			return score.incABy(1);
+			return score.incABy(points);
 		}
 	},
 	B {
