@@ -31,7 +31,7 @@ public class ScorekeeperTest {
 		scorekeeper.score1Clicked();
 		assertScore(0, 1);
 	}
-	
+
 	@Test
 	public void clickOnlyTeamButtonDoesNotRaiseScore() {
 		scorekeeper.teamAClicked();
@@ -51,9 +51,11 @@ public class ScorekeeperTest {
 	@Test
 	public void clickingScoreWithoutTeamSelectionIsIgnored() {
 		scorekeeper.score1Clicked();
+		scorekeeper.score2Clicked();
+		scorekeeper.score3Clicked();
 		assertScore(0, 0);
 	}
-	
+
 	@Test
 	public void onlyFirstClickOnScoreCounts() {
 		scorekeeper.teamAClicked();
@@ -70,15 +72,16 @@ public class ScorekeeperTest {
 		scorekeeper.score2Clicked();
 		assertScore(2, 0);
 	}
-	
+
 	@Test
 	public void scoring3Points() {
 		scorekeeper.teamBClicked();
 		scorekeeper.score3Clicked();
 		assertScore(0, 3);
 	}
-	
+
 	private void assertScore(int expectedAScore, int expectedBScore) {
-		assertEquals(Score.ab(expectedAScore, expectedBScore), scorekeeper.getScore());
+		assertEquals(Score.ab(expectedAScore, expectedBScore),
+				scorekeeper.getScore());
 	}
 }

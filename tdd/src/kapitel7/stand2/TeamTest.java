@@ -17,7 +17,7 @@ public class TeamTest {
 		Score newScore = Team.B.scorePointsOn(3, Score.ab(2, 7));
 		assertEquals(Score.ab(2, 10), newScore);
 	}
-	
+
 	@Test
 	public void scoringOnTeamNONEdoesNotChangeScore() {
 		Score newScore = Team.NONE.scorePointsOn(3, Score.ab(2, 7));

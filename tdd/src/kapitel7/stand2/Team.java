@@ -7,12 +7,14 @@ public enum Team {
 			return score.incABy(points);
 		}
 	},
+
 	B {
 		@Override
 		public Score scorePointsOn(int points, Score score) {
 			return score.incBBy(points);
 		}
 	},
+
 	NONE {
 		@Override
 		public Score scorePointsOn(int points, Score score) {
