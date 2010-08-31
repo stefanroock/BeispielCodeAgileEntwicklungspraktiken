@@ -48,6 +48,22 @@ public class ScorekeeperTest {
 		assertScore(1, 1);
 	}
 
+	@Test
+	public void clickingScoreWithoutTeamSelectionIsIgnored() {
+		scorekeeper.score1Clicked();
+		assertScore(0, 0);
+	}
+	
+	@Test
+	public void onlyFirstClickOnScoreCounts() {
+		scorekeeper.teamAClicked();
+		scorekeeper.score1Clicked();
+		assertScore(1, 0);
+		scorekeeper.score1Clicked();
+		scorekeeper.score1Clicked();
+		assertScore(1, 0);
+	}
+
 	private void assertScore(int expectedAScore, int expectedBScore) {
 		assertEquals(Score.ab(expectedAScore, expectedBScore), scorekeeper.getScore());
 	}

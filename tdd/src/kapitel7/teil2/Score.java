@@ -10,12 +10,12 @@ public class Score {
 		this.b = b;
 	}
 
-	public Score incA() {
-		return new Score(a + 1, b);
+	public Score incABy(int points) {
+		return new Score(a + points, b);
 	}
 
-	public Score incB() {
-		return new Score(a, b + 1);
+	public Score incBBy(int points) {
+		return new Score(a, b + points);
 	}
 
 	public int getA() {

@@ -16,7 +16,7 @@ public class ScoreTest {
 	@Test
 	public void incrementingScoreOfTeamAReturnsNewScoreObject() {
 		Score score = new Score(1,0);
-		Score incrementedScore = score.incA();
+		Score incrementedScore = score.incABy(1);
 		assertNotSame(score, incrementedScore);
 		assertEquals(2, incrementedScore.getA());
 	}
@@ -24,9 +24,9 @@ public class ScoreTest {
 	@Test
 	public void incrementingScoreOfTeamBReturnsNewScoreObject() {
 		Score score = new Score(2,0);
-		Score incrementedScore = score.incB();
+		Score incrementedScore = score.incBBy(3);
 		assertNotSame(score, incrementedScore);
-		assertEquals(1, incrementedScore.getB());
+		assertEquals(3, incrementedScore.getB());
 	}
 	
 	@Test

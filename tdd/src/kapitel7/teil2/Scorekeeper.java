@@ -1,24 +1,20 @@
 package kapitel7.teil2;
 
 public class Scorekeeper {
-	private Score score = new Score(0,0);
-	private boolean teamASelected;
-	private Team selectedTeam = null;
+	private Score score = new Score(0, 0);
+	private Team selectedTeam = Team.NONE;
 
 	public void teamAClicked() {
-		teamASelected = true;
+		selectedTeam = Team.A;
 	}
 
 	public void teamBClicked() {
-		teamASelected = false;
-  }
+		selectedTeam = Team.B;
+	}
 
 	public void score1Clicked() {
-		if (teamASelected) {
-			score = score.incA();
-		} else {
-			score = score.incB();
-		}
+		score = selectedTeam.scorePointsOn(1, score);
+		selectedTeam = Team.NONE;
 	}
 
 	public Score getScore() {
