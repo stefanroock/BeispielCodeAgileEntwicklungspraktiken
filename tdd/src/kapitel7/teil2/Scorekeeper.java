@@ -3,6 +3,7 @@ package kapitel7.teil2;
 public class Scorekeeper {
 	private Score score = new Score(0,0);
 	private boolean teamASelected;
+	private Team selectedTeam = null;
 
 	public void teamAClicked() {
 		teamASelected = true;

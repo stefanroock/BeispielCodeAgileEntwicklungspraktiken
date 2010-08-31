@@ -45,7 +45,7 @@ public class ScorekeeperTest {
 		assertScore(1, 0);
 		scorekeeper.teamBClicked();
 		scorekeeper.score1Clicked();
-		assertScore(1, 2);
+		assertScore(1, 1);
 	}
 
 	private void assertScore(int expectedAScore, int expectedBScore) {
