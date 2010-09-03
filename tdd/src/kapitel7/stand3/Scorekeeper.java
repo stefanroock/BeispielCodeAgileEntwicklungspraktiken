@@ -32,4 +32,8 @@ public class Scorekeeper {
 		score = selectedTeam.scorePointsOn(points, score);
 		selectedTeam = Team.NONE;
 	}
+
+	public void registerViewer(ScoreViewer viewer) {
+		viewer.display(score);
+	}
 }

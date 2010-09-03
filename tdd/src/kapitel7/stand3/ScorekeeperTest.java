@@ -1,6 +1,7 @@
 package kapitel7.stand3;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -80,6 +81,13 @@ public class ScorekeeperTest {
 		assertScore(0, 3);
 	}
 
+	@Test
+	public void registeringScoreViewerDisplaysCurrentScore() {
+		ScoreViewer viewer = mock(ScoreViewer.class);
+		scorekeeper.registerViewer(viewer);
+		verify(viewer).display(Score.ab(0, 0));
+	}
+	
 	private void assertScore(int expectedAScore, int expectedBScore) {
 		assertEquals(Score.ab(expectedAScore, expectedBScore),
 				scorekeeper.getScore());
