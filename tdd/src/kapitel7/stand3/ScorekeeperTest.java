@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 public class ScorekeeperTest {
 	private Scorekeeper scorekeeper;
@@ -86,6 +87,19 @@ public class ScorekeeperTest {
 		ScoreViewer viewer = mock(ScoreViewer.class);
 		scorekeeper.registerViewer(viewer);
 		verify(viewer).display(Score.ab(0, 0));
+	}
+
+	@Test
+	public void scoreViewerIsNotifiedOfChangedScore() {
+		ScoreViewer viewer = mock(ScoreViewer.class);
+		scorekeeper.registerViewer(viewer);
+		scorekeeper.teamAClicked();
+		scorekeeper.score1Clicked();
+		scorekeeper.teamBClicked();
+		scorekeeper.score3Clicked();
+		InOrder scoreChanges = inOrder(viewer);
+		scoreChanges.verify(viewer).display(Score.ab(1, 0));
+		scoreChanges.verify(viewer).display(Score.ab(1, 3));		
 	}
 	
 	private void assertScore(int expectedAScore, int expectedBScore) {

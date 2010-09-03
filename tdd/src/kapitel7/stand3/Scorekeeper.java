@@ -3,6 +3,7 @@ package kapitel7.stand3;
 public class Scorekeeper {
 	private Score score = new Score(0, 0);
 	private Team selectedTeam = Team.NONE;
+	private ScoreViewer scoreViewer = ScoreViewer.NULL;
 
 	public Score getScore() {
 		return score;
@@ -31,9 +32,11 @@ public class Scorekeeper {
 	private void score(int points) {
 		score = selectedTeam.scorePointsOn(points, score);
 		selectedTeam = Team.NONE;
+		scoreViewer.display(score);
 	}
 
 	public void registerViewer(ScoreViewer viewer) {
-		viewer.display(score);
+		this.scoreViewer = viewer;
+		scoreViewer.display(score);
 	}
 }
