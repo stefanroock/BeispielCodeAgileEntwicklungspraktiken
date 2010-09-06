@@ -1,4 +1,4 @@
-package kapitel7.teil1;
+package kapitel7.stand1;
 
 import static org.junit.Assert.assertEquals;
 

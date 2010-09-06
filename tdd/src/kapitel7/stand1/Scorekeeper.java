@@ -1,4 +1,4 @@
-package kapitel7.teil1;
+package kapitel7.stand1;
 
 public class Scorekeeper {
 	private int teamAScore = 0;
