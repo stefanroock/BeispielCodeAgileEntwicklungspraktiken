@@ -4,6 +4,12 @@ public class Scorekeeper {
 	private Score score = new Score(0, 0);
 	private Team selectedTeam = Team.NONE;
 	private ScoreViewer scoreViewer = ScoreViewer.NULL;
+	private final GameTimeService timeService;
+	private GameReport gameReport = GameReport.NULL;
+
+	public Scorekeeper(GameTimeService timeService) {
+		this.timeService = timeService;
+	}
 
 	public Score getScore() {
 		return score;
@@ -33,10 +39,15 @@ public class Scorekeeper {
 		score = selectedTeam.scorePointsOn(points, score);
 		selectedTeam = Team.NONE;
 		scoreViewer.display(score);
+		gameReport.reportScored(timeService.currentQuarter(), timeService.currentMinute(), score);
 	}
 
 	public void registerViewer(ScoreViewer viewer) {
 		this.scoreViewer = viewer;
 		scoreViewer.display(score);
+	}
+
+	public void setReport(GameReport report) {
+		this.gameReport = report;
 	}
 }

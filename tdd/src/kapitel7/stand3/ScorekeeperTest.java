@@ -9,10 +9,12 @@ import org.mockito.InOrder;
 
 public class ScorekeeperTest {
 	private Scorekeeper scorekeeper;
+	private GameTimeService timeService;
 
 	@Before
 	public void init() {
-		scorekeeper = new Scorekeeper();
+		timeService = mock(GameTimeService.class);
+		scorekeeper = new Scorekeeper(timeService);
 	}
 
 	@Test
@@ -100,6 +102,17 @@ public class ScorekeeperTest {
 		InOrder scoreChanges = inOrder(viewer);
 		scoreChanges.verify(viewer).display(Score.ab(1, 0));
 		scoreChanges.verify(viewer).display(Score.ab(1, 3));		
+	}
+	
+	@Test
+	public void scoringReportsNewScoreWithCurrentTime() {
+		GameReport report = mock(GameReport.class);
+		scorekeeper.setReport(report);
+		when(timeService.currentQuarter()).thenReturn(2);
+		when(timeService.currentMinute()).thenReturn(9);
+		scorekeeper.teamBClicked();
+		scorekeeper.score2Clicked();
+		verify(report).reportScored(2, 9, Score.ab(0, 2));
 	}
 	
 	private void assertScore(int expectedAScore, int expectedBScore) {
