@@ -39,7 +39,8 @@ public class Scorekeeper {
 		score = selectedTeam.scorePointsOn(points, score);
 		selectedTeam = Team.NONE;
 		scoreViewer.display(score);
-		gameReport.reportScored(timeService.currentQuarter(), timeService.currentMinute(), score);
+		GameTime currentTime = timeService.currentTime();
+		gameReport.reportScored(currentTime.getQuarter(), currentTime.getMinute(), score);
 	}
 
 	public void registerViewer(ScoreViewer viewer) {

@@ -2,6 +2,7 @@ package kapitel7.stand3;
 
 public class GameTime {
 
+	public static final GameTime UNAVAILABLE = new GameTime(0,0);
 	private final int quarter;
 	private final int minute;
 
