@@ -4,10 +4,10 @@ public interface GameReport {
 
 	GameReport NULL = new GameReport() {
 		@Override
-		public void reportScored(int quarter, int minute, Score newScore) {
+		public void reportScored(GameTime time, Score newScore) {
 		}
 	};
 
-	void reportScored(int quarter, int minute, Score newScore);
+	void reportScored(GameTime time, Score newScore);
 
 }

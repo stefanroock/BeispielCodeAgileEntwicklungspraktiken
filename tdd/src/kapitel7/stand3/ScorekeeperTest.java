@@ -112,7 +112,7 @@ public class ScorekeeperTest {
 		when(timeService.currentTime()).thenReturn(new GameTime(2, 9));
 		scorekeeper.teamBClicked();
 		scorekeeper.score2Clicked();
-		verify(report).reportScored(2, 9, Score.ab(0, 2));
+		verify(report).reportScored(new GameTime(2, 9), Score.ab(0, 2));
 	}
 	
 	private void assertScore(int expectedAScore, int expectedBScore) {
