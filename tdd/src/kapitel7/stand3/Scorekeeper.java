@@ -6,6 +6,7 @@ public class Scorekeeper {
 	private ScoreViewer scoreViewer = ScoreViewer.NULL;
 	private final GameTimeService timeService;
 	private GameReport gameReport = GameReport.NULL;
+	private ScoringPolicy scoringPolicy = ScoringPolicy.DEFAULT;
 
 	public Scorekeeper(GameTimeService timeService) {
 		this.timeService = timeService;
@@ -36,7 +37,8 @@ public class Scorekeeper {
 	}
 
 	private void score(int points) {
-		score = selectedTeam.scorePointsOn(points, score);
+		int countingPoints = scoringPolicy.countingPoints(points);
+		score = selectedTeam.scorePointsOn(countingPoints, score);
 		selectedTeam = Team.NONE;
 		scoreViewer.display(score);
 		gameReport.reportScored(timeService.currentTime(), score);
@@ -49,5 +51,9 @@ public class Scorekeeper {
 
 	public void setReport(GameReport report) {
 		this.gameReport = report;
+	}
+
+	public void setScoringPolicy(ScoringPolicy policy) {
+		this.scoringPolicy = policy;
 	}
 }

@@ -115,6 +115,16 @@ public class ScorekeeperTest {
 		verify(report).reportScored(new GameTime(2, 9), Score.ab(0, 2));
 	}
 	
+	@Test
+	public void coutingPointsCanBeChangedByScoringPolicy() {
+		ScoringPolicy policy = mock(ScoringPolicy.class);
+		when(policy.countingPoints(anyInt())).thenReturn(5);
+		scorekeeper.setScoringPolicy(policy);
+		scorekeeper.teamBClicked();
+		scorekeeper.score3Clicked();
+		assertScore(0, 5);
+	}
+	
 	private void assertScore(int expectedAScore, int expectedBScore) {
 		assertEquals(Score.ab(expectedAScore, expectedBScore),
 				scorekeeper.getScore());
