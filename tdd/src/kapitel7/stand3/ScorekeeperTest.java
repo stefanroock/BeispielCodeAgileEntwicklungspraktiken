@@ -116,7 +116,7 @@ public class ScorekeeperTest {
 	}
 	
 	@Test
-	public void coutingPointsCanBeChangedByScoringPolicy() {
+	public void countingPointsCanBeChangedByScoringPolicy() {
 		ScoringPolicy policy = mock(ScoringPolicy.class);
 		when(policy.countingPoints(anyInt())).thenReturn(5);
 		scorekeeper.setScoringPolicy(policy);
