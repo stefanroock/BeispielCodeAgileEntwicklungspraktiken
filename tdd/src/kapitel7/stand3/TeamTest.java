@@ -1,6 +1,6 @@
 package kapitel7.stand3;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

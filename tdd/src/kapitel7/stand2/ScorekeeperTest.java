@@ -2,8 +2,7 @@ package kapitel7.stand2;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class ScorekeeperTest {
 	private Scorekeeper scorekeeper;
