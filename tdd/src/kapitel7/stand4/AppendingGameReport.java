@@ -1,9 +1,6 @@
 package kapitel7.stand4;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class AppendingGameReport implements GameReport {
 
@@ -15,16 +12,18 @@ public class AppendingGameReport implements GameReport {
 
 	@Override
 	public void reportScored(GameTime time, Score newScore) {
+		PrintWriter writer = null;
 		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(reportFile));
+			writer = new PrintWriter(new FileWriter(reportFile, true));
 			writer.print(time);
 			writer.print(" ");
 			writer.print(newScore);
 			writer.println();
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException ioe) {
+			throw new RuntimeException(ioe);
+		} finally {
+			if (writer != null)
+				writer.close();
 		}
 	}
 

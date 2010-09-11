@@ -1,16 +1,10 @@
 package kapitel7.stand4;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class AppendingGameReportTest {
 
@@ -34,11 +28,33 @@ public class AppendingGameReportTest {
 		assertReportFileContents("Q1:9' 2:9");
 	}
 
-	private void assertReportFileContents(String expected) throws IOException {
+	@Test
+	public void multipleScoreReportsAreAppendedInOrder() throws Exception {
+		report.reportScored(new GameTime(1, 9), Score.ab(2, 9));
+		report.reportScored(new GameTime(2, 5), Score.ab(15, 23));
+		assertReportFileContents("Q1:9' 2:9", "Q2:5' 15:23");
+	}
+
+	@Test
+	public void ifNotExistantReportFileIsCreated() throws Exception {
+		assertTrue(reportFile.delete());
+		report.reportScored(new GameTime(1, 9), Score.ab(2, 9));
+		assertTrue(reportFile.exists());
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void ioExceptionDuringReportingWillBePropagatedAsRTE() throws Exception {
+		reportFile.setReadOnly();
+		report.reportScored(new GameTime(1, 9), Score.ab(2, 9));
+	}
+	
+	private void assertReportFileContents(String ... expectedLines) throws IOException {
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(reportFile));
-			assertEquals("line", expected, reader.readLine());
+			for (String expectedLine : expectedLines) {
+				assertEquals("line", expectedLine, reader.readLine());
+			}
 			assertNull("no more lines", reader.readLine());
 		} finally {
 			if (reader != null)
